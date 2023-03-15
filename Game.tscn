@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PlayerManager.cs" type="Script" id=2]
+
+[sub_resource type="BoxShape" id=1]
+
+[sub_resource type="CubeMesh" id=2]
+
+[node name="Game" type="Spatial"]
+
+[node name="GameContext" type="Node" parent="."]
+
+[node name="PlayerManager" type="Node" parent="GameContext"]
+script = ExtResource( 2 )
+playerController_p = NodePath("../../Player")
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 6.56505, 0, 0, 0, 0.0207309, 0, 0, 0, 8.49906, -0.444454, 0.0165665, -0.584587 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Collider" type="CollisionShape" parent="Floor"]
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Mesh" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.433311, 0 )
+
+[node name="Camera" type="Camera" parent="Player"]
+transform = Transform( 1, 0, 0, 0, 0.914889, 0.403705, 0, -0.403705, 0.914889, 0, 1.31645, 1.75345 )
